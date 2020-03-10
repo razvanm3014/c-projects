@@ -1,0 +1,78 @@
+using System;
+//guess the odds of winning at the lottery
+//the result will be printed with 6 decimals
+//category I= numberWinningBalls
+//II = numberWinningBalls - 1
+//III = numberWinningBalls - 2
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("How many balls are there in total ?");
+        int numberOfBalls = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Number of winning balls");
+        int numberWinningBalls = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Category: I / II / II ");
+        string category = Console.ReadLine();
+        int x ;
+        if (category.ToLower() == "i")
+        {
+            x = numberWinningBalls;
+        }
+        else if (category.ToLower() == "ii")
+        {
+            x = numberWinningBalls - 1;
+        }
+        else if (category.ToLower() == "iii")
+        {
+            x = numberWinningBalls - 2;
+        }
+        else
+        {
+
+            throw new NotImplementedException();
+        }
+
+
+        double result;
+
+
+
+        if (numberOfBalls >= numberWinningBalls & numberWinningBalls >= x)
+        {
+
+
+            double sansecastig = Combinatii(numberWinningBalls, x) * Combinatii((numberOfBalls - numberWinningBalls), (numberWinningBalls - x)) / Combinatii(numberOfBalls, numberWinningBalls);
+            var str = sansecastig.ToString("0.##########");
+            Console.WriteLine("Your odds of winning are " + str);
+        }
+
+        else
+        {
+            result = 0;
+            Console.WriteLine(result);
+        }
+
+
+
+        static double Combinatii(double n, double k)
+        {
+            double res = Factorial(n) / (Factorial(k) * Factorial(n - k));
+            return res;
+        }
+
+        static double Factorial(double number)
+        {
+            double result = 1;
+            for (int i = 1; i <= number; i++)
+            {
+                result *= i;
+            }
+            return result;
+        }
+
+    }
+
+}
+
